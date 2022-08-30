@@ -42,6 +42,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
 		int MinDebris = 5;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
+		FVector RelativeLocation = FVector(0, 500000, 0);
+
 private:
 
 	void SpawnDebris(FVector2D quadrant);

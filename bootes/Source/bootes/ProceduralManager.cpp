@@ -53,5 +53,7 @@ void AProceduralManager::SpawnAround(UClass* Spawnable, FVector2D location)
 	yLocation -= QuadrantSize / 2;
 	FVector spawnLoc = FVector(xLocation, yLocation, 0);
 	GetWorld()->SpawnActor(Spawnable, &spawnLoc);
+	FVector partnerPos = spawnLoc + RelativeLocation;
+	GetWorld()->SpawnActor(Spawnable, &partnerPos);
 }
 
