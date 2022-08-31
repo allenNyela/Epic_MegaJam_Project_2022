@@ -20,36 +20,7 @@ protected:
 	virtual void BeginPlay() override;
 
 public:	
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Crates")
-		UClass* SpawnObject;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Crates")
-		UClass* Debris;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-		float DistanceAcross = 10000;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crates")
-		int CrateCount = 13;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-		int QuadrantCount = 5;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-		int MaxDebris = 8;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-		int MinDebris = 5;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
-		FVector RelativeLocation = FVector(0, 500000, 0);
-
-private:
-
-	void SpawnDebris(FVector2D quadrant);
-
-	void SpawnAround(UClass* Spawnable, FVector2D location);
-
-	float QuadrantSize = 0.f;
 };
