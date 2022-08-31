@@ -11,7 +11,7 @@ Platform: Windows
 Tools Used: UE4, Blender, [sound effect programs]
 
 Team Members: 
-  
+
   Aaron King (He/Him) - Procedural Generation Programmer, Level Designer, email: aaronking@att.net
   
   Avi Choksi (He/Him) - Lead Gameplay Programmer, email: avi0210c@gmail.com
