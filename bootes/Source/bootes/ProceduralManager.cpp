@@ -1,12 +1,9 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ProceduralManager.h"
 
 // Sets default values
 AProceduralManager::AProceduralManager()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
 }
@@ -32,7 +29,16 @@ void AProceduralManager::BeginPlay()
 	{
 		FVector2D crateQuadrant = quadrants[FMath::RandRange(0, quadrants.Num() - 1)];
 		quadrants.Remove(crateQuadrant);
-		SpawnAround(SpawnObject, crateQuadrant);
+		SpawnAround(SpawnObject, SoulWorldObject, crateQuadrant);
+	}
+}
+
+void AProceduralManager::SoulCollected()
+{
+	CrateCount--;
+	if (CrateCount == 0)
+	{
+		//end game
 	}
 }
 
@@ -41,19 +47,24 @@ void AProceduralManager::SpawnDebris(FVector2D quadrant)
 	int amount = FMath::RandRange(MinDebris, MaxDebris);
 	for (int i = 0; i < amount; i++)
 	{
-		SpawnAround(Debris, quadrant);
+		SpawnAround(Debris, DebrisSoulWorld, quadrant);
 	}
 }
 
-void AProceduralManager::SpawnAround(UClass* Spawnable, FVector2D location)
+void AProceduralManager::SpawnAround(UClass* Spawnable, UClass* SoulObject, FVector2D location)
 {
 	float xLocation = FMath::RandRange(location.X, location.X + QuadrantSize);
 	xLocation -= QuadrantSize / 2;
 	float yLocation = FMath::RandRange(location.Y, location.Y + QuadrantSize);
 	yLocation -= QuadrantSize / 2;
-	FVector spawnLoc = FVector(xLocation, yLocation, 0);
-	GetWorld()->SpawnActor(Spawnable, &spawnLoc);
+	FVector spawnLoc = OriginPoint + FVector(xLocation, yLocation, 0);
+	AActor *SpawnedActor = GetWorld()->SpawnActor(Spawnable, &spawnLoc);
 	FVector partnerPos = spawnLoc + RelativeLocation;
-	GetWorld()->SpawnActor(Spawnable, &partnerPos);
+	AActor *SoulActor = GetWorld()->SpawnActor(SoulObject, &partnerPos);
+	UActorComponent *comp = SpawnedActor->GetComponentByClass(UCrateLink::StaticClass());
+	if (UCrateLink* crateLink = dynamic_cast<UCrateLink*>(comp))
+	{
+		crateLink->AddLink(SoulActor);
+		UE_LOG(LogTemp, Warning, TEXT("Successful link"));
+	}
 }
-
