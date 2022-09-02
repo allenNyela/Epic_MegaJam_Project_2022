@@ -53,9 +53,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawning")
 		FVector OriginPoint = FVector(0, 0, 0);
 
-	UFUNCTION(BlueprintCallable, Category = "Crates")
-		void SoulCollected();
-
 private:
 
 	void SpawnDebris(FVector2D quadrant);
