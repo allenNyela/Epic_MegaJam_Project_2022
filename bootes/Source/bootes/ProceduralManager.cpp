@@ -33,15 +33,6 @@ void AProceduralManager::BeginPlay()
 	}
 }
 
-void AProceduralManager::SoulCollected()
-{
-	CrateCount--;
-	if (CrateCount == 0)
-	{
-		//end game
-	}
-}
-
 void AProceduralManager::SpawnDebris(FVector2D quadrant)
 {
 	int amount = FMath::RandRange(MinDebris, MaxDebris);
@@ -65,6 +56,5 @@ void AProceduralManager::SpawnAround(UClass* Spawnable, UClass* SoulObject, FVec
 	if (UCrateLink* crateLink = dynamic_cast<UCrateLink*>(comp))
 	{
 		crateLink->AddLink(SoulActor);
-		UE_LOG(LogTemp, Warning, TEXT("Successful link"));
 	}
 }
