@@ -50,9 +50,14 @@ void AProceduralManager::SpawnAround(UClass* Spawnable, UClass* SoulObject, FVec
 	yLocation -= QuadrantSize / 2;
 	FVector spawnLoc = OriginPoint + FVector(xLocation, yLocation, 0);
 	AActor *SpawnedActor = GetWorld()->SpawnActor(Spawnable, &spawnLoc);
+	float zRot = FMath::RandRange(0, 360);
+	FRotator Rotation = FRotator(0, zRot, 0);
+	SpawnedActor->SetActorRotation(Rotation);
 	FVector partnerPos = spawnLoc + RelativeLocation;
 	AActor *SoulActor = GetWorld()->SpawnActor(SoulObject, &partnerPos);
+	SoulActor->SetActorRotation(Rotation);
 	UActorComponent *comp = SpawnedActor->GetComponentByClass(UCrateLink::StaticClass());
+
 	if (UCrateLink* crateLink = dynamic_cast<UCrateLink*>(comp))
 	{
 		crateLink->AddLink(SoulActor);
