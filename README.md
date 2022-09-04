@@ -8,7 +8,7 @@ Game Type: Single-player 3-D Puzzle
 
 Platform: Windows
 
-Tools Used: UE4, Blender, [sound effect programs]
+Tools Used: UE4, Blender
 
 Team Members: 
 
@@ -26,14 +26,8 @@ Controls:
 
   Ship Movement: AWSD
   
-  Switching Worlds: []
-  
-  Settings: []
-  
-  Quit: []
+  Switching Worlds: Left-Click
 
 Concept: 
 
   You're a captain and the lone survivor of a catastrophic shipwreck that killed all of your crewmates and destroyed your ship. Now on a row boat, you must find and retrieve the lost souls of your crewmates through the wreckage by traversing the mystical underwater world and following the North Star. Once you collect all the souls, your crewmates will be at rest and thus fulfilling your final duties as their captain.
-
-Premade Assets/Textures/Materials: []
